@@ -164,5 +164,3 @@ module RegisterFile_testbench;
     end
 
 endmodule
-
-//NOTE: ADD MORE TO THIS TESTBENCH, WRITE UNIQUE CASES.
