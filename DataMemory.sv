@@ -11,7 +11,7 @@ module DataMemory(
     output logic [63:0] ReadData,
     input logic [63:0] Address,
     input logic [63:0] WriteData,
-    input logic MemeoryRead, MemoryWrite, Clock
+    input logic MemoryRead, MemoryWrite, Clock
 );
     //Datamemory is byte-addressable
     //Each memory location stores 8 bits=1 byte
