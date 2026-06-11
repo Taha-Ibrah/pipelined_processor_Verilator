@@ -76,7 +76,7 @@ module singlecycle(
 //INSTANTIATING EACH MODULE. CONNECTING MODULE OUTPUT TO SIGNAL
 
 
-
+    //INSTRUCTION MEMORY IS INSTANTIATED IN PROCESSOR FILE****
     // Instruction memory
     InstructionMemory imem(
         .Instruction(instruction),    // Output instruction

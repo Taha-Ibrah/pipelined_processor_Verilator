@@ -1,3 +1,6 @@
+//INSTRUCTION MEMORY IS THE PROGRAM THAT WILL BE RAN BY THE SINGLECYCLE PROCESSOR
+//THE MACHINE CODE INSTRUCTIONS ARE THE PROGRAM
+
 //Optimized code for systemverilog
 //InstructionMemory has input of ReadAddress, output of 32-bit Instruction Set Address
 
@@ -17,7 +20,7 @@ module InstructionMemory(
 
 
     always_comb begin
-        case(Address)
+        case(ReadAddress)
 
 
     	/* Test Program 1:
@@ -43,24 +46,27 @@ module InstructionMemory(
 	 * 2C: STUR X13, [XZR, 0x20]  //store back the counter value into the memory location 0x20
 	 */
 
-
-        64'h000: Data = 32'hF84003E9;
-        64'h004: Data = 32'hF84083EA;
-        64'h008: Data = 32'hF84103EB;
-        64'h00C: Data = 32'hF84183EC;
-        64'h010: Data = 32'hF84203ED;
-        64'h014: Data = 32'hAA0B014A;
-        64'h018: Data = 32'h8A0A018C;
-        64'h01C: Data = 32'hB400008C;
-        64'h020: Data = 32'h8B0901AD;
-        64'h024: Data = 32'hCB09018C;
-        64'h028: Data = 32'h17FFFFFD;
-        64'h02C: Data = 32'hF80203ED;
-        64'h030: Data = 32'hF84203ED;
+//RECALL: EACH INSTRUCTION HAS 32 BITS, AND THE 8BYTES ARE INSTRUCTIONS
+//IN LEGv8 FORMATTING!!
+        64'h000: Instruction = 32'hF84003E9; // LDUR X9, [X31, #0] ------ X9 holds 1
+        64'h004: Instruction = 32'hF84083EA; // LDUR X10, [XZR, #8] ------ Loads memory[0x8] into register X10 ---- X10 holds 0xA
+        64'h008: Instruction = 32'hF84103EB; // LDUR X11, [XZR, #0x10] --- Loads memory[0x10] into X11 ---- X11 holds 0x5
+        64'h00C: Instruction = 32'hF84183EC; // LDUR X12, [XZR, #0x18] ---- Loads memory[0x18] into X12 ---- X12 holds large value
+        64'h010: Instruction = 32'hF84203ED; // LDUR X13, [XZR, #0x20] ---- X13 holds 0
+        64'h014: Instruction = 32'hAA0B014A; // ORR X10, X10, X11 --- OR LOGIC --- X10 holds 0xF
+        64'h018: Instruction = 32'h8A0A018C; // AND X12, X12, X10 --- X12 holds 0xF
+        64'h01C: Instruction = 32'hB400008C; // CBZ X12, end ---- if X12==0, branch to end
+        64'h020: Instruction = 32'h8B0901AD; // ADD X13, X13, X9 ---- X13=X13+1 (incremented)
+        64'h024: Instruction = 32'hCB09018C; // SUB X12, X12, X9 ----- X12=X12-1
+        64'h028: Instruction = 32'h17FFFFFD; // B loop ---- Unconditional branch back to PC 0x1C
+        64'h02C: Instruction = 32'hF80203ED; // STUR X13, [XZR, #0x20] ---- memory address [0x20] contains value 0xF
+        64'h030: Instruction = 32'hF84203ED; // LDUR X13, [XZR, #0x20] ---- Loads memory address 0x20 back into X13
         
-        default: Data = 32'hXXXXXXXX;
+        default: Instruction = 32'hXXXXXXXX;
 
         endcase
 
     end
 endmodule
+
+//By the end of the iteration, Register X13 and MemtoRegOut variable should both have value of 0xF (single cycle)

@@ -1,0 +1,23 @@
+VSingleCycleProcessor_testbench__ALL.o: \
+  VSingleCycleProcessor_testbench__ALL.cpp \
+  VSingleCycleProcessor_testbench.cpp \
+  VSingleCycleProcessor_testbench__pch.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilated.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilated_config.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilatedos.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilated_types.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilated_funcs.h \
+  VSingleCycleProcessor_testbench__Syms.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilated_vcd_c.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilated_trace.h \
+  VSingleCycleProcessor_testbench.h \
+  VSingleCycleProcessor_testbench___024root.h \
+  /opt/homebrew/Cellar/verilator/5.048/share/verilator/include/verilated_timing.h \
+  VSingleCycleProcessor_testbench___024root__0.cpp \
+  VSingleCycleProcessor_testbench__main.cpp \
+  VSingleCycleProcessor_testbench__Trace__0.cpp \
+  VSingleCycleProcessor_testbench___024root__Slow.cpp \
+  VSingleCycleProcessor_testbench___024root__0__Slow.cpp \
+  VSingleCycleProcessor_testbench__Syms__Slow.cpp \
+  VSingleCycleProcessor_testbench__Trace__0__Slow.cpp \
+  VSingleCycleProcessor_testbench__TraceDecls__0__Slow.cpp

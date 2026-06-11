@@ -70,7 +70,7 @@ module control(
             //MOVING ONTO R-TYPE INSTRUCTIONS
 
             `OPCODE_ADDREG: begin
-                reg2loc = 1'b1;
+                reg2loc = 1'b0;
                 uncond_branch = 1'b0;
                 branch = 1'b0;
                 memread = 1'b0;

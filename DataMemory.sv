@@ -33,18 +33,18 @@ module DataMemory(
     //          ...
     //  memBank[7]=data[7:0]
     // Most-Signficant-Byte is stored in the lowest address --> big endian
-    task initset;
+    task initset; //THINK OF THIS LIKE PYTHON FUNCTION
         input logic [63:0] addr;
         input logic [63:0] data;
         begin
-            memBank[addr]     = data[63:56];
-            memBank[addr + 1] = data[55:48];
-            memBank[addr + 2] = data[47:40];
-            memBank[addr + 3] = data[39:32];
-            memBank[addr + 4] = data[31:24];
-            memBank[addr + 5] = data[23:16];
-            memBank[addr + 6] = data[15:8];
-            memBank[addr + 7] = data[7:0];
+            memBank[addr[9:0]]     = data[63:56]; //using lower 10 bits for memory index
+            memBank[addr[9:0] + 1] = data[55:48];
+            memBank[addr[9:0] + 2] = data[47:40];
+            memBank[addr[9:0] + 3] = data[39:32];
+            memBank[addr[9:0] + 4] = data[31:24];
+            memBank[addr[9:0] + 5] = data[23:16];
+            memBank[addr[9:0] + 6] = data[15:8];
+            memBank[addr[9:0] + 7] = data[7:0];
         end
     endtask
 
@@ -58,15 +58,15 @@ module DataMemory(
 
     initial begin
         // Address 0x0 gets 0x1
-        initset(64'h0,  64'h1);                  // Counter variable
+        initset(64'h0,  64'h1);                  // memory address 0x0 contains value 1
         // Address 0x8 gets 0xA
-        initset(64'h8,  64'ha);                  // Part of mask
+        initset(64'h8,  64'ha);                  // memory address 0x8 contains value A
         // Address 0x10 gets 0x5
-        initset(64'h10, 64'h5);                  // Other part of mask
+        initset(64'h10, 64'h5);                  // memory address 0x10 gets value 5
         // Address 0x18 gets large constant
-        initset(64'h18, 64'h0ffbea7deadbeeff);   // Big constant
+        initset(64'h18, 64'h0ffbea7deadbeeff);   // memory address at 0x18 gets an absurdly large number (exact value is irrelevant)
         // Address 0x20 gets 0
-        initset(64'h20, 64'h0);                  // Clearing space
+        initset(64'h20, 64'h0);                  // memory address 0x20 gets 0.
         
     // Add any extra data needed for your tests here.
     end
@@ -75,14 +75,14 @@ module DataMemory(
     always_ff @(posedge Clock) begin
 
         if (MemoryRead) begin
-            ReadData[63:56] <= memBank[Address];
-            ReadData[55:48] <= memBank[Address + 1];
-            ReadData[47:40] <= memBank[Address + 2];
-            ReadData[39:32] <= memBank[Address + 3];
-            ReadData[31:24] <= memBank[Address + 4];
-            ReadData[23:16] <= memBank[Address + 5];
-            ReadData[15:8]  <= memBank[Address + 6];
-            ReadData[7:0]   <= memBank[Address + 7];
+            ReadData[63:56] <= memBank[Address[9:0]];//USING LOWER 10 BITS FOR MEMORY INDEX
+            ReadData[55:48] <= memBank[Address[9:0] + 1];
+            ReadData[47:40] <= memBank[Address[9:0] + 2];
+            ReadData[39:32] <= memBank[Address[9:0] + 3];
+            ReadData[31:24] <= memBank[Address[9:0] + 4];
+            ReadData[23:16] <= memBank[Address[9:0] + 5];
+            ReadData[15:8]  <= memBank[Address[9:0] + 6];
+            ReadData[7:0]   <= memBank[Address[9:0] + 7];
         end
     end
 
@@ -91,14 +91,14 @@ module DataMemory(
     always_ff @(posedge Clock) begin
 
         if (MemoryWrite) begin
-            memBank[Address]     <= #3 WriteData[63:56];
-            memBank[Address + 1] <= #3 WriteData[55:48];
-            memBank[Address + 2] <= #3 WriteData[47:40];
-            memBank[Address + 3] <= #3 WriteData[39:32];
-            memBank[Address + 4] <= #3 WriteData[31:24];
-            memBank[Address + 5] <= #3 WriteData[23:16];
-            memBank[Address + 6] <= #3 WriteData[15:8];
-            memBank[Address + 7] <= #3 WriteData[7:0];
+            memBank[Address[9:0]]     <= #3 WriteData[63:56];
+            memBank[Address[9:0] + 1] <= #3 WriteData[55:48];
+            memBank[Address[9:0] + 2] <= #3 WriteData[47:40];
+            memBank[Address[9:0] + 3] <= #3 WriteData[39:32];
+            memBank[Address[9:0] + 4] <= #3 WriteData[31:24];
+            memBank[Address[9:0] + 5] <= #3 WriteData[23:16];
+            memBank[Address[9:0] + 6] <= #3 WriteData[15:8];
+            memBank[Address[9:0] + 7] <= #3 WriteData[7:0];
             // Useful for debugging:
             // $display("Writing Address:%h Data:%h", Address, WriteData);
         end
