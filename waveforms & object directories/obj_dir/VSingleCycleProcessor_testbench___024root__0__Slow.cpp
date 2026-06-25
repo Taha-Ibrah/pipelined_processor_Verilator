@@ -330,7 +330,7 @@ VL_ATTR_COLD void VSingleCycleProcessor_testbench___024root___stl_sequent__TOP__
                                           >> 0x00000015U))));
         vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__signop = 0U;
     }
-    vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__memread 
+    vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem2reg 
         = (((((((((0x01c2U == (0x01ffU & (vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__instruction 
                                           >> 0x00000015U))) 
                   | (0x01c0U == (0x01ffU & (vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__instruction 
@@ -349,7 +349,7 @@ VL_ATTR_COLD void VSingleCycleProcessor_testbench___024root___stl_sequent__TOP__
                                       >> 0x00000015U)))) 
            && (0x01c2U == (0x01ffU & (vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__instruction 
                                       >> 0x00000015U))));
-    vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem2reg 
+    vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__memread 
         = (((((((((0x01c2U == (0x01ffU & (vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__instruction 
                                           >> 0x00000015U))) 
                   | (0x01c0U == (0x01ffU & (vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__instruction 
@@ -496,6 +496,56 @@ VL_ATTR_COLD void VSingleCycleProcessor_testbench___024root___stl_sequent__TOP__
                         & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__alu_input_b)))) 
            & (- (QData)((IData)((1U & (~ ((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluctrl) 
                                           >> 3U)))))));
+    if (vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__memread) {
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0x00ffffffffffffffULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | ((QData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                  [(0x000003ffU & (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout))])) 
+                  << 0x00000038U));
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0xff00ffffffffffffULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | ((QData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                  [(0x000003ffU & ((IData)(1U) 
+                                                   + (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout)))])) 
+                  << 0x00000030U));
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0xffff00ffffffffffULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | ((QData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                  [(0x000003ffU & ((IData)(2U) 
+                                                   + (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout)))])) 
+                  << 0x00000028U));
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0xffffff00ffffffffULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | ((QData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                  [(0x000003ffU & ((IData)(3U) 
+                                                   + (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout)))])) 
+                  << 0x00000020U));
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0xffffffff00ffffffULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | ((QData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                  [(0x000003ffU & ((IData)(4U) 
+                                                   + (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout)))])) 
+                  << 0x00000018U));
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0xffffffffff00ffffULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | ((QData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                  [(0x000003ffU & ((IData)(5U) 
+                                                   + (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout)))])) 
+                  << 0x00000010U));
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0xffffffffffff00ffULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | ((QData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                  [(0x000003ffU & ((IData)(6U) 
+                                                   + (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout)))])) 
+                  << 8U));
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data 
+            = ((0xffffffffffffff00ULL & vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+               | (IData)((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                 [(0x000003ffU & ((IData)(7U) 
+                                                  + (IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__aluout)))])));
+    } else {
+        vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__mem_read_data = 0ULL;
+    }
     vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__nextpc 
         = (((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__uncond_branch) 
             | ((IData)(vlSelfRef.SingleCycleProcessor_testbench__DOT__uut__DOT__branch) 
@@ -551,10 +601,10 @@ VL_ATTR_COLD void VSingleCycleProcessor_testbench___024root___dump_triggers__act
         VL_DBG_MSGS("         '" + tag + "' region trigger index 0 is active: @(negedge SingleCycleProcessor_testbench.CLK)\n");
     }
     if ((1U & (IData)((triggers[0U] >> 1U)))) {
-        VL_DBG_MSGS("         '" + tag + "' region trigger index 1 is active: @(posedge SingleCycleProcessor_testbench.CLK)\n");
+        VL_DBG_MSGS("         '" + tag + "' region trigger index 1 is active: @([true] __VdlySched.awaitingCurrentTime())\n");
     }
     if ((1U & (IData)((triggers[0U] >> 2U)))) {
-        VL_DBG_MSGS("         '" + tag + "' region trigger index 2 is active: @([true] __VdlySched.awaitingCurrentTime())\n");
+        VL_DBG_MSGS("         '" + tag + "' region trigger index 2 is active: @(posedge SingleCycleProcessor_testbench.CLK)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -624,8 +674,6 @@ VL_ATTR_COLD void VSingleCycleProcessor_testbench___024root___ctor_var_reset(VSi
     vlSelf->__Vintraval_h55293a7a__0 = 0;
     vlSelf->__Vintraidx_h1fba200f__0 = 0;
     vlSelf->__Vintraval_h6138bc5a__0 = 0;
-    vlSelf->__VdlyVal__SingleCycleProcessor_testbench__DOT__currentpc__v0 = 0;
-    vlSelf->__VdlySet__SingleCycleProcessor_testbench__DOT__currentpc__v0 = 0;
     vlSelf->__VdlyVal__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0 = 0;
     vlSelf->__VdlyDim0__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0 = 0;
     vlSelf->__VdlySet__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0 = 0;
@@ -650,6 +698,8 @@ VL_ATTR_COLD void VSingleCycleProcessor_testbench___024root___ctor_var_reset(VSi
     vlSelf->__VdlyVal__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7 = 0;
     vlSelf->__VdlyDim0__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7 = 0;
     vlSelf->__VdlySet__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7 = 0;
+    vlSelf->__VdlyVal__SingleCycleProcessor_testbench__DOT__currentpc__v0 = 0;
+    vlSelf->__VdlySet__SingleCycleProcessor_testbench__DOT__currentpc__v0 = 0;
     for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
         vlSelf->__VstlTriggered[__Vi0] = 0;
     }

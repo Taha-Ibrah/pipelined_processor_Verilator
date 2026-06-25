@@ -72,23 +72,31 @@ module DataMemory(
     end
 
     //MemoryReadLogic:
-    always_ff @(posedge Clock) begin
+    always_comb begin //CHANGING TO COMBINATIONAL TO PRESERVE 5-STAGES OF PIPELINED PROCESSOR
 
         if (MemoryRead) begin
-            ReadData[63:56] <= memBank[Address[9:0]];//USING LOWER 10 BITS FOR MEMORY INDEX
-            ReadData[55:48] <= memBank[Address[9:0] + 1];
-            ReadData[47:40] <= memBank[Address[9:0] + 2];
-            ReadData[39:32] <= memBank[Address[9:0] + 3];
-            ReadData[31:24] <= memBank[Address[9:0] + 4];
-            ReadData[23:16] <= memBank[Address[9:0] + 5];
-            ReadData[15:8]  <= memBank[Address[9:0] + 6];
-            ReadData[7:0]   <= memBank[Address[9:0] + 7];
+            ReadData[63:56] = memBank[Address[9:0]];//USING LOWER 10 BITS FOR MEMORY INDEX
+            ReadData[55:48] = memBank[Address[9:0] + 1];
+            ReadData[47:40] = memBank[Address[9:0] + 2];
+            ReadData[39:32] = memBank[Address[9:0] + 3];
+            ReadData[31:24] = memBank[Address[9:0] + 4];
+            ReadData[23:16] = memBank[Address[9:0] + 5];
+            ReadData[15:8]  = memBank[Address[9:0] + 6];
+            ReadData[7:0]   = memBank[Address[9:0] + 7];
+        end
+        else begin
+            ReadData = 64'd0;
         end
     end
 
     //MemoryWriteLogic:
     //The #3 delay represents small memory write delay in simulation
-    always_ff @(posedge Clock) begin
+    always_ff @(negedge Clock) begin
+
+        //CHANGING SEQUENTIAL LOGIC posedge TO negedge
+        //THIS IS TO PRESERVE 5-STAGE PIPELINE PROCESSOR
+        //SWITCHING TO COMBINATIONAL WILL NOT WORK B/C ANY SMALL SIGNAL WIGGLE WILL OVERWRITE DATAMEMORY SLOT (ie not good practice)
+        //POSEDGE --> EX/MEM FLIP-FLOP --> NEGEDGE --> DATAMEMORY WRITE --> POSEDGE --> MEM/WB FLIP-FLOP (STUR INSTRUCTION)
 
         if (MemoryWrite) begin
             memBank[Address[9:0]]     <= #3 WriteData[63:56];

@@ -18,7 +18,7 @@
 `define OPCODE_LDUR   11'b??111000010
 `define OPCODE_STUR   11'b??111000000
 
-module control(
+module control(//INPUT LOGIC IS OPCODE, OPCODE DETERMINES ALL THE CONTROL SIGNALS.
     input logic [10:0] opcode,
     output logic reg2loc,
     output logic alusrc,
@@ -102,7 +102,7 @@ module control(
                 regwrite = 1'b1;
                 alusrc = 1'b0;
                 mem2reg = 1'b0;
-                aluop = 4'b0000; //SUB
+                aluop = 4'b0000; //AND
                 signop = 2'bx; //Don't Care
             end
             `OPCODE_ORRREG: begin
@@ -183,7 +183,7 @@ module control(
                 regwrite = 1'b0;
                 alusrc = 1'bx;
                 mem2reg = 1'bx;
-                aluop = 4'bxxx;
+                aluop = 4'bxxxx;
                 signop = 2'bxx;
             end
         endcase

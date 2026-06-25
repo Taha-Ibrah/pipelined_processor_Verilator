@@ -38,7 +38,6 @@ class alignas(VL_CACHE_LINE_BYTES) VSingleCycleProcessor_testbench___024root fin
         CData/*7:0*/ __Vintraval_hf1509afa__0;
         CData/*7:0*/ __Vintraval_h55293a7a__0;
         CData/*7:0*/ __Vintraval_h6138bc5a__0;
-        CData/*0:0*/ __VdlySet__SingleCycleProcessor_testbench__DOT__currentpc__v0;
         CData/*7:0*/ __VdlyVal__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0;
         CData/*0:0*/ __VdlySet__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0;
         CData/*7:0*/ __VdlyVal__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v1;
@@ -55,6 +54,7 @@ class alignas(VL_CACHE_LINE_BYTES) VSingleCycleProcessor_testbench___024root fin
         CData/*0:0*/ __VdlySet__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v6;
         CData/*7:0*/ __VdlyVal__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7;
         CData/*0:0*/ __VdlySet__SingleCycleProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7;
+        CData/*0:0*/ __VdlySet__SingleCycleProcessor_testbench__DOT__currentpc__v0;
         CData/*0:0*/ __VstlFirstIteration;
         CData/*0:0*/ __VstlPhaseResult;
         CData/*0:0*/ __Vtrigprevexpr___TOP__SingleCycleProcessor_testbench__DOT__CLK__0;
