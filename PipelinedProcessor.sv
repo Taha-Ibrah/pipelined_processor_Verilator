@@ -9,7 +9,6 @@
 //PASSED THE FIRST STAGE?
 //ANSWER: THE PROCESSOR DOES IT AUTOMATICALLY THROUGH TIMINGS OF THE PIPELINE REGISTER AND THROUGH THE PC UPDATING.
 
-//For now, compile the processor --> add hazard units later.
 
 
 module PipelinedProcessor(
@@ -17,7 +16,8 @@ module PipelinedProcessor(
     input logic resetl, //Active-low reset signal
     input logic [63:0] startpc, //Starting PC value after reset
     output logic [63:0] currentpc, //Current program counter value
-    output logic [63:0] MemtoRegOut //Final writeback data to register file
+    output logic [63:0] MemtoRegOut, //Final writeback data to register file (combinational; also feeds regfile)
+    output logic [63:0] CommittedResult //Held copy of the most recent committed writeback — stable for the testbench
 );
 
     //Pipeline register output variables.
@@ -66,7 +66,9 @@ module PipelinedProcessor(
     logic [63:0] MEM_WB_ReadMemData;
     logic [4:0] MEM_WB_Rd;
 
-
+    //ADDING FLUSH & STALL LOGIC SIGNALS
+    logic Flush;
+    logic Stall;
 
     //The following logic wires are the intermediate wires connecting various control units
     //and pipeline registers.
@@ -114,14 +116,27 @@ module PipelinedProcessor(
 
     //ABOVE INTERMEDIATE WIRES COVER ALL WIRES WITHIN PROCESSOR
 
-    //PC Update logic
+    //PC Update logic + Committed result latch — both triggered on negedge.
     //PC UPDATES AT THE NEGATIVE EDGE OF THE CLOCK.
     //WHILE PIPELINE REGISTERS UPDATE AT THE POSITIVE EDGE
     always_ff @(negedge CLK) begin
-    if(resetl)
-        currentpc <= #3 nextpc;
-    else
-        currentpc <= #3 startpc;
+        if(!resetl) begin
+            currentpc       <= #3 startpc;
+            CommittedResult <= 64'd0;
+        end
+        else begin
+            // Flush (a taken branch) MUST override Stall. If a data-hazard stall lands
+            // on the same cycle the branch redirects, the stalling instruction is in the
+            // branch shadow and will be flushed anyway — freezing the PC here would drop
+            // the branch target as the branch leaves MEM. So branch redirect wins.
+            if (Flush || !Stall) //Stall holds the PC, unless a branch is redirecting.
+                currentpc <= #3 nextpc;
+            //===================================================
+            // Latch the most recently committed writeback value so the testbench
+            // can read one stable output port instead of timing a transient mux signal.
+            if (MEM_WB_RegWrite && (MEM_WB_Rd != 5'd31))
+                CommittedResult <= MemtoRegOut;
+        end
     end
 
     //Breaking up instruction field into respective register fields.
@@ -133,17 +148,14 @@ module PipelinedProcessor(
 
 
 
-
-
-
-
-
     //INSTRUCTION VARIABLE WILL BE INSTANTIATED IN INSTRUCTION MEMORY
     //THEN ALL THE VARIABLES WILL HOLD THE VALUES OF THE INSTRUCTION BITS
     //IN WHICH WHERE THEY WERE ASSIGNED.
 
     //INSTANTIATE MODULES
-    InstructionMemory imem(
+    //Swap between InstructionMemory (Program 1) and InstructionMemory2 (Program 2)
+    //here to choose which test program the processor executes.
+    InstructionMemory2 imem(
         .Instruction(instruction),
         .ReadAddress(currentpc)
     );
@@ -165,7 +177,7 @@ module PipelinedProcessor(
     signExtender signext(
         .BusImm(ext_imm),
         .Instr(IF_ID_instruction[25:0]),
-        .signOp(signop)
+        .SignOp(signop)
     );
 
     RegisterFile regfile(
@@ -202,7 +214,6 @@ module PipelinedProcessor(
     );
     assign MemtoRegOut = MEM_WB_MemtoReg ? MEM_WB_ReadMemData : MEM_WB_ALUResult;
 
-    
 
 
     // BRANCH TARGET ADDER — EX stage.
@@ -246,6 +257,12 @@ module PipelinedProcessor(
     IF_ID if_id(
         .clk(CLK),
         .reset(~resetl), //because the reset in this processor is active-low, then its inversed to the reset inside IF_ID
+        // On a taken branch, force IF_ID to CAPTURE the redirect target (override a stall hold).
+        // The branch target is the PC for only one half-cycle, so IF_ID must latch it on the very
+        // next posedge. If a stall held write_enable low here, that target instruction (e.g. the
+        // loop-top CBZ) would be skipped entirely. Flush must NOT reset IF_ID — the redirect
+        // overwrites the wrong-path instruction with the target naturally.
+        .write_enable(~Stall | Flush),
         .PC_in(currentpc),
         .Instruction_in(instruction),
         .PC_out(IF_ID_PC),
@@ -254,7 +271,7 @@ module PipelinedProcessor(
 
     ID_EX id_ex(
         .clk(CLK),
-        .reset(~resetl),
+        .reset(~resetl | Flush),
         .PC_in(IF_ID_PC), //IF_ID_PC coming in, and ID_EX_PC will exit
         .ReadData1_in(regoutA), //Because processor component is originating in IF/ID
         .ReadData2_in(regoutB),
@@ -262,16 +279,16 @@ module PipelinedProcessor(
 
         .Rd_in(rd),
 
-        .ALUOp_in(aluctrl),
-        .ALUsrc_in(alusrc),
+        .ALUOp_in       (Stall ? 4'b0 : aluctrl),
+        .ALUSrc_in      (Stall ? 1'b0 : alusrc),
 
-        .MemRead_in(memread),
-        .MemWrite_in(memwrite),
-        .Branch_in(branch),
-        .UncondBranch_in(uncond_branch),
+        .MemRead_in     (Stall ? 1'b0 : memread),
+        .MemWrite_in    (Stall ? 1'b0 : memwrite),
+        .Branch_in      (Stall ? 1'b0 : branch),
+        .UncondBranch_in(Stall ? 1'b0 : uncond_branch),
 
-        .RegWrite_in(regwrite),
-        .MemtoReg_in(mem2reg),
+        .RegWrite_in    (Stall ? 1'b0 : regwrite),
+        .MemtoReg_in    (Stall ? 1'b0 : mem2reg),
 
         .PC_out(ID_EX_PC),
         .ReadData1_out(ID_EX_ReadData1),
@@ -290,7 +307,7 @@ module PipelinedProcessor(
 
     EX_MEM ex_mem(
         .clk(CLK),
-        .reset(~resetl),
+        .reset(~resetl | Flush),
         .ALUresult_in(ALU_out),
         // FIX: branch_target (computed above in EX stage) is registered here.
         // EX_MEM_AddResult is what NextPCLogic uses as BranchTarget.
@@ -341,6 +358,29 @@ module PipelinedProcessor(
         
         .MemtoReg_out(MEM_WB_MemtoReg),
         .RegWrite_out(MEM_WB_RegWrite)
+    );
+
+    //INSTANTIATING THE FLUSH AND STALL MODULES
+
+    Flush Flush_Unit(
+        .EX_MEM_Branch(EX_MEM_Branch),
+        .EX_MEM_Zero(EX_MEM_Zero),
+        .EX_MEM_UncondBranch(EX_MEM_UncondBranch),
+        .Flush(Flush)
+    );
+
+    Stall Stall_Unit(
+        .ID_EX_RegWrite(ID_EX_RegWrite),
+        .ID_EX_Rd(ID_EX_Rd),
+
+        .EX_MEM_RegWrite(EX_MEM_RegWrite),
+        .EX_MEM_Rd(EX_MEM_Rd),
+
+        .rn(rn),
+        .rm(rm),
+
+        .stall(Stall)
+
     );
     
 

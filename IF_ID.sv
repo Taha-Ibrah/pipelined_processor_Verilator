@@ -25,14 +25,16 @@ module IF_ID(
     //outputs into ID (Instruction decode)
 
     output logic[63:0] PC_out,
-    output logic[31:0] Instruction_out
+    output logic[31:0] Instruction_out,
+
+    input logic write_enable //logic signal used for stalling.
 );
     always_ff @(posedge clk) begin
         if(reset) begin
             PC_out <= 64'd0;
             Instruction_out <= 32'd0;
         end
-        else begin
+        else if (write_enable) begin //Only updating when not stalled
             PC_out <= PC_in;
             Instruction_out <= Instruction_in;
         end
