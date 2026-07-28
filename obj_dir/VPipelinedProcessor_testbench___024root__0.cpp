@@ -16,7 +16,6 @@ void VPipelinedProcessor_testbench___024root___eval_initial(VPipelinedProcessor_
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Body
     VPipelinedProcessor_testbench___024root___eval_initial__TOP(vlSelf);
-    vlSelfRef.__Vm_traceActivity[1U] = 1U;
     VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming__0(vlSelf);
     VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming__1(vlSelf);
     VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming__2(vlSelf);
@@ -31,6 +30,10 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
     VPipelinedProcessor_testbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Locals
+    IData/*31:0*/ PipelinedProcessor_testbench__DOT__passed;
+    PipelinedProcessor_testbench__DOT__passed = 0;
+    IData/*31:0*/ PipelinedProcessor_testbench__DOT__num_tests;
+    PipelinedProcessor_testbench__DOT__num_tests = 0;
     IData/*31:0*/ PipelinedProcessor_testbench__DOT__unnamedblk1_1__DOT____Vrepeat0;
     PipelinedProcessor_testbench__DOT__unnamedblk1_1__DOT____Vrepeat0 = 0;
     QData/*63:0*/ __Vtask_PipelinedProcessor_testbench__DOT__passTest__0__actualOut;
@@ -45,17 +48,15 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
     vlSelfRef.PipelinedProcessor_testbench__DOT__resetl = 1U;
     vlSelfRef.PipelinedProcessor_testbench__DOT__startpc = 0ULL;
     vlSelfRef.PipelinedProcessor_testbench__DOT__CLK = 0U;
-    vlSelfRef.PipelinedProcessor_testbench__DOT__passed = 0U;
-    vlSelfRef.PipelinedProcessor_testbench__DOT__num_tests = 1U;
+    PipelinedProcessor_testbench__DOT__passed = 0U;
+    PipelinedProcessor_testbench__DOT__num_tests = 1U;
     vlSelfRef.PipelinedProcessor_testbench__DOT__watchdog = 0U;
     co_await vlSelfRef.__VdlySched.delay(0x000000000001d4c0ULL, 
                                          nullptr, "PipelinedProcessor_testbench.sv", 
                                          102);
-    vlSelfRef.__Vm_traceActivity[2U] = 1U;
     co_await vlSelfRef.__VdlySched.delay(0x00000000000003e8ULL, 
                                          nullptr, "PipelinedProcessor_testbench.sv", 
                                          104);
-    vlSelfRef.__Vm_traceActivity[2U] = 1U;
     vlSelfRef.PipelinedProcessor_testbench__DOT__resetl = 0U;
     vlSelfRef.PipelinedProcessor_testbench__DOT__startpc = 0ULL;
     VPipelinedProcessor_testbench___024root____VbeforeTrig_h5f004e51__0(vlSelf, 
@@ -64,24 +65,21 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
                                                          nullptr, 
                                                          "@(posedge PipelinedProcessor_testbench.CLK)", 
                                                          "PipelinedProcessor_testbench.sv", 
-                                                         113);
-    vlSelfRef.__Vm_traceActivity[2U] = 1U;
+                                                         118);
     VPipelinedProcessor_testbench___024root____VbeforeTrig_h5f004ef9__0(vlSelf, 
                                                                         "@(negedge PipelinedProcessor_testbench.CLK)");
     co_await vlSelfRef.__VtrigSched_h5f004ef9__0.trigger(0U, 
                                                          nullptr, 
                                                          "@(negedge PipelinedProcessor_testbench.CLK)", 
                                                          "PipelinedProcessor_testbench.sv", 
-                                                         114);
-    vlSelfRef.__Vm_traceActivity[2U] = 1U;
+                                                         119);
     VPipelinedProcessor_testbench___024root____VbeforeTrig_h5f004e51__0(vlSelf, 
                                                                         "@(posedge PipelinedProcessor_testbench.CLK)");
     co_await vlSelfRef.__VtrigSched_h5f004e51__0.trigger(0U, 
                                                          nullptr, 
                                                          "@(posedge PipelinedProcessor_testbench.CLK)", 
                                                          "PipelinedProcessor_testbench.sv", 
-                                                         115);
-    vlSelfRef.__Vm_traceActivity[2U] = 1U;
+                                                         120);
     vlSelfRef.PipelinedProcessor_testbench__DOT__resetl = 1U;
     while ((0x0000000000000034ULL > vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc)) {
         VPipelinedProcessor_testbench___024root____VbeforeTrig_h5f004e51__0(vlSelf, 
@@ -90,16 +88,14 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
                                                              nullptr, 
                                                              "@(posedge PipelinedProcessor_testbench.CLK)", 
                                                              "PipelinedProcessor_testbench.sv", 
-                                                             138);
-        vlSelfRef.__Vm_traceActivity[2U] = 1U;
+                                                             144);
         VPipelinedProcessor_testbench___024root____VbeforeTrig_h5f004ef9__0(vlSelf, 
                                                                             "@(negedge PipelinedProcessor_testbench.CLK)");
         co_await vlSelfRef.__VtrigSched_h5f004ef9__0.trigger(0U, 
                                                              nullptr, 
                                                              "@(negedge PipelinedProcessor_testbench.CLK)", 
                                                              "PipelinedProcessor_testbench.sv", 
-                                                             139);
-        vlSelfRef.__Vm_traceActivity[2U] = 1U;
+                                                             145);
         VL_WRITEF_NX("CurrentPC: %h\n",1, '#',64,vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc);
     }
     PipelinedProcessor_testbench__DOT__unnamedblk1_1__DOT____Vrepeat0 = 5U;
@@ -110,16 +106,14 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
                                                              nullptr, 
                                                              "@(posedge PipelinedProcessor_testbench.CLK)", 
                                                              "PipelinedProcessor_testbench.sv", 
-                                                             150);
-        vlSelfRef.__Vm_traceActivity[2U] = 1U;
+                                                             156);
         VPipelinedProcessor_testbench___024root____VbeforeTrig_h5f004ef9__0(vlSelf, 
                                                                             "@(negedge PipelinedProcessor_testbench.CLK)");
         co_await vlSelfRef.__VtrigSched_h5f004ef9__0.trigger(0U, 
                                                              nullptr, 
                                                              "@(negedge PipelinedProcessor_testbench.CLK)", 
                                                              "PipelinedProcessor_testbench.sv", 
-                                                             151);
-        vlSelfRef.__Vm_traceActivity[2U] = 1U;
+                                                             157);
         PipelinedProcessor_testbench__DOT__unnamedblk1_1__DOT____Vrepeat0 
             = (PipelinedProcessor_testbench__DOT__unnamedblk1_1__DOT____Vrepeat0 
                - (IData)(1U));
@@ -131,8 +125,8 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
     if ((__Vtask_PipelinedProcessor_testbench__DOT__passTest__0__actualOut 
          == __Vtask_PipelinedProcessor_testbench__DOT__passTest__0__expectedOut)) {
         VL_WRITEF_NX("%s passed\n",1, 'S',&(vlSelfRef.__Vtask_PipelinedProcessor_testbench__DOT__passTest__0__testName));
-        vlSelfRef.PipelinedProcessor_testbench__DOT__passed 
-            = ((IData)(1U) + vlSelfRef.PipelinedProcessor_testbench__DOT__passed);
+        PipelinedProcessor_testbench__DOT__passed = 
+            ((IData)(1U) + PipelinedProcessor_testbench__DOT__passed);
     } else {
         VL_WRITEF_NX("%s failed: got %x, expected %x\n",3
                      , 'S',&(vlSelfRef.__Vtask_PipelinedProcessor_testbench__DOT__passTest__0__testName)
@@ -140,17 +134,16 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
                      , '#',64,__Vtask_PipelinedProcessor_testbench__DOT__passTest__0__expectedOut);
     }
     __Vtask_PipelinedProcessor_testbench__DOT__allPassed__1__totalTests 
-        = vlSelfRef.PipelinedProcessor_testbench__DOT__num_tests;
+        = PipelinedProcessor_testbench__DOT__num_tests;
     __Vtask_PipelinedProcessor_testbench__DOT__allPassed__1__passedCount 
-        = vlSelfRef.PipelinedProcessor_testbench__DOT__passed;
+        = PipelinedProcessor_testbench__DOT__passed;
     if ((__Vtask_PipelinedProcessor_testbench__DOT__allPassed__1__passedCount 
          == __Vtask_PipelinedProcessor_testbench__DOT__allPassed__1__totalTests)) {
         VL_WRITEF_NX("All tests passed. 5-Stage Pipelined Processor Passed.\n",0);
     } else {
         VL_WRITEF_NX("Some tests failed.\n",0);
     }
-    VL_FINISH_MT("PipelinedProcessor_testbench.sv", 166, "");
-    vlSelfRef.__Vm_traceActivity[2U] = 1U;
+    VL_FINISH_MT("PipelinedProcessor_testbench.sv", 172, "");
     co_return;
 }
 
@@ -163,13 +156,13 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
         co_await vlSelfRef.__VdlySched.delay(0x000000000000ea60ULL, 
                                              nullptr, 
                                              "PipelinedProcessor_testbench.sv", 
-                                             172);
+                                             178);
         vlSelfRef.PipelinedProcessor_testbench__DOT__CLK 
             = (1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__CLK)));
         co_await vlSelfRef.__VdlySched.delay(0x000000000000ea60ULL, 
                                              nullptr, 
                                              "PipelinedProcessor_testbench.sv", 
-                                             173);
+                                             179);
         vlSelfRef.PipelinedProcessor_testbench__DOT__CLK 
             = (1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__CLK)));
         vlSelfRef.PipelinedProcessor_testbench__DOT__watchdog 
@@ -414,8 +407,10 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
         if (vlSelfRef.PipelinedProcessor_testbench__DOT__resetl) {
             if ((1U & ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush) 
                        | (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall))))) {
-                vlSelfRef.__Vintraval_h0a4e6e9a__0 
-                    = vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__nextpc;
+                vlSelfRef.__Vintraval_hd2aee5f2__0 
+                    = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)
+                        ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_AddResult
+                        : (4ULL + vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc));
                 VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming__3____Vfork_1__0(vlSelf);
             }
         } else {
@@ -449,7 +444,7 @@ VlCoroutine VPipelinedProcessor_testbench___024root___eval_initial__TOP__Vtiming
                                          nullptr, "PipelinedProcessor.sv", 
                                          133);
     vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__currentpc__v0 
-        = vlSelfRef.__Vintraval_h0a4e6e9a__0;
+        = vlSelfRef.__Vintraval_hd2aee5f2__0;
     vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__currentpc__v0 = 1U;
     co_return;
 }
@@ -493,9 +488,9 @@ void VPipelinedProcessor_testbench___024root___act_comb__TOP__0(VPipelinedProces
     // Body
     if (VL_UNLIKELY(((0x00ffU == (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__watchdog))))) {
         VL_WRITEF_NX("Watchdog timer expired\n",0);
-        VL_FINISH_MT("PipelinedProcessor_testbench.sv", 182, "");
+        VL_FINISH_MT("PipelinedProcessor_testbench.sv", 188, "");
     }
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset 
+    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset 
         = (1U & ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl)) 
                  | (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)));
 }
@@ -506,7 +501,13 @@ void VPipelinedProcessor_testbench___024root___eval_act(VPipelinedProcessor_test
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Body
     if ((7ULL & vlSelfRef.__VactTriggered[0U])) {
-        VPipelinedProcessor_testbench___024root___act_comb__TOP__0(vlSelf);
+        if (VL_UNLIKELY(((0x00ffU == (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__watchdog))))) {
+            VL_WRITEF_NX("Watchdog timer expired\n",0);
+            VL_FINISH_MT("PipelinedProcessor_testbench.sv", 188, "");
+        }
+        vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset 
+            = (1U & ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl)) 
+                     | (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)));
     }
 }
 
@@ -553,7 +554,7 @@ void VPipelinedProcessor_testbench___024root___nba_comb__TOP__0(VPipelinedProces
     // Body
     if (VL_UNLIKELY(((0x00ffU == (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__watchdog))))) {
         VL_WRITEF_NX("Watchdog timer expired\n",0);
-        VL_FINISH_MT("PipelinedProcessor_testbench.sv", 182, "");
+        VL_FINISH_MT("PipelinedProcessor_testbench.sv", 188, "");
     }
 }
 
@@ -608,8 +609,16 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
     VL_DEBUG_IF(VL_DBG_MSGF("+    VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2\n"); );
     VPipelinedProcessor_testbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
+    // Locals
+    CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc;
+    PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc = 0;
+    QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b;
+    PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b = 0;
     // Body
-    if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset) {
+    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_Zero 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
+           && (0ULL == vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ALU_out));
+    if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset) {
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp = 0U;
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ReadData2 = 0ULL;
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 = 0ULL;
@@ -639,7 +648,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ReadMemData = 0ULL;
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ALUResult = 0ULL;
     }
-    if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset) {
+    if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset) {
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult = 0ULL;
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData2 = 0ULL;
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_PC = 0ULL;
@@ -682,7 +691,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
         = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl)
             ? (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_Rd)
             : 0U);
-    if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset) {
+    if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset) {
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_Rd = 0U;
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_Rd = 0U;
     } else {
@@ -692,7 +701,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
             = (0x0000001fU & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction);
     }
     if (vlSelfRef.PipelinedProcessor_testbench__DOT__resetl) {
-        if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__if_id__DOT__write_enable) {
+        if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__if_id__write_enable) {
             vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_PC 
                 = vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc;
             vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
@@ -745,24 +754,21 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_PC = 0ULL;
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction = 0U;
     }
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_Zero 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
-           && (0ULL == vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ALU_out));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUSrc 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alusrc)));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_MemWrite 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_MemWrite));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_MemRead 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_MemRead));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_Branch 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_Branch));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_UncondBranch 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_UncondBranch));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_MemtoReg 
         = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl) 
@@ -771,15 +777,15 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
         = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl) 
            && (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_RegWrite));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_MemWrite 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__memwrite)));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_MemRead 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__memread)));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_Branch 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__branch)));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush 
@@ -787,7 +793,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
            | ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_Zero) 
               & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_Branch)));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_UncondBranch 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__uncond_branch)));
     vlSelfRef.PipelinedProcessor_testbench__DOT__MemtoRegOut 
@@ -795,40 +801,40 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
             ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ReadMemData
             : vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ALUResult);
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_MemtoReg 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_MemtoReg));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_RegWrite 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_RegWrite));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_MemtoReg 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem2reg)));
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b 
+    PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b 
         = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUSrc)
             ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_SignExtImm
             : vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData2);
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_RegWrite 
-        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset))) 
+        = ((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset))) 
            && ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__regwrite)));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ALU_out 
         = (((4U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
              ? (((1U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
-                  ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b
+                  ? PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b
                   : (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                     - vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)) 
+                     - PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)) 
                 & (- (QData)((IData)((1U & ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp) 
                                             >> 1U))))))
              : ((2U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
                  ? ((vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                     + vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b) 
+                     + PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b) 
                     & (- (QData)((IData)((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp)))))))
                  : ((1U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
                      ? (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                        | vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)
+                        | PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)
                      : (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                        & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)))) 
+                        & PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)))) 
            & (- (QData)((IData)((1U & (~ ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp) 
                                           >> 3U)))))));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__memwrite 
@@ -954,7 +960,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
             vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__aluctrl = 0U;
             vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__signop = 2U;
         }
-        vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
+        PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
             = ((0x01c2U != (0x01ffU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                                        >> 0x00000015U))) 
                && ((0x01c0U == (0x01ffU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
@@ -990,7 +996,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
                                                 >> 0x00000015U)))
                          ? 6U : 0U));
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__signop = 0U;
-        vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
+        PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
             = ((0x0088U == (0x02f8U & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                                        >> 0x00000015U))) 
                || (0x0288U == (0x02f8U & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
@@ -1069,7 +1075,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
            && (0x01c2U == (0x01ffU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                                       >> 0x00000015U))));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__rn 
-        = (0x0000001fU & ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc)
+        = (0x0000001fU & ((IData)(PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc)
                            ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction
                            : (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                               >> 0x00000010U)));
@@ -1088,7 +1094,7 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(VPipelinedPro
                     | ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_Rd) 
                        == (0x0000001fU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                                           >> 5U)))))));
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__if_id__DOT__write_enable 
+    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__if_id__write_enable 
         = (1U & ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                  | (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)));
 }
@@ -1148,7 +1154,7 @@ void VPipelinedProcessor_testbench___024root___nba_comb__TOP__1(VPipelinedProces
     } else {
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data = 0ULL;
     }
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset 
+    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset 
         = (1U & ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl)) 
                  | (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)));
 }
@@ -1170,43 +1176,167 @@ void VPipelinedProcessor_testbench___024root___nba_sequent__TOP__3(VPipelinedPro
     }
 }
 
-void VPipelinedProcessor_testbench___024root___nba_comb__TOP__2(VPipelinedProcessor_testbench___024root* vlSelf) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VPipelinedProcessor_testbench___024root___nba_comb__TOP__2\n"); );
-    VPipelinedProcessor_testbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    auto& vlSelfRef = std::ref(*vlSelf).get();
-    // Body
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__nextpc 
-        = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)
-            ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_AddResult
-            : (4ULL + vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc));
-}
-
 void VPipelinedProcessor_testbench___024root___eval_nba(VPipelinedProcessor_testbench___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VPipelinedProcessor_testbench___024root___eval_nba\n"); );
     VPipelinedProcessor_testbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
+    // Locals
+    QData/*63:0*/ __Vinline__nba_sequent__TOP__0___VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0;
+    __Vinline__nba_sequent__TOP__0___VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0 = 0;
+    CData/*4:0*/ __Vinline__nba_sequent__TOP__0___VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0;
+    __Vinline__nba_sequent__TOP__0___VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0 = 0;
+    CData/*0:0*/ __Vinline__nba_sequent__TOP__0___VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0;
+    __Vinline__nba_sequent__TOP__0___VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0 = 0;
     // Body
     if ((1ULL & vlSelfRef.__VnbaTriggered[0U])) {
-        VPipelinedProcessor_testbench___024root___nba_sequent__TOP__0(vlSelf);
+        __Vinline__nba_sequent__TOP__0___VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0 = 0U;
+        if (((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_RegWrite) 
+             & (0x1fU != (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_Rd)))) {
+            __Vinline__nba_sequent__TOP__0___VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0 
+                = vlSelfRef.PipelinedProcessor_testbench__DOT__MemtoRegOut;
+            __Vinline__nba_sequent__TOP__0___VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0 
+                = vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_Rd;
+            __Vinline__nba_sequent__TOP__0___VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0 = 1U;
+        }
+        if (vlSelfRef.PipelinedProcessor_testbench__DOT__resetl) {
+            if (((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_RegWrite) 
+                 & (0x1fU != (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_Rd)))) {
+                vlSelfRef.PipelinedProcessor_testbench__DOT__CommittedResult 
+                    = vlSelfRef.PipelinedProcessor_testbench__DOT__MemtoRegOut;
+            }
+        } else {
+            vlSelfRef.PipelinedProcessor_testbench__DOT__CommittedResult = 0ULL;
+        }
+        if (__Vinline__nba_sequent__TOP__0___VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0) {
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs[__Vinline__nba_sequent__TOP__0___VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0] 
+                = __Vinline__nba_sequent__TOP__0___VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs__v0;
+        }
     }
     if ((7ULL & vlSelfRef.__VnbaTriggered[0U])) {
-        VPipelinedProcessor_testbench___024root___nba_comb__TOP__0(vlSelf);
+        if (VL_UNLIKELY(((0x00ffU == (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__watchdog))))) {
+            VL_WRITEF_NX("Watchdog timer expired\n",0);
+            VL_FINISH_MT("PipelinedProcessor_testbench.sv", 188, "");
+        }
     }
     if ((5ULL & vlSelfRef.__VnbaTriggered[0U])) {
-        VPipelinedProcessor_testbench___024root___nba_sequent__TOP__1(vlSelf);
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v0;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v1) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v1 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v1] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v1;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v2) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v2 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v2] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v2;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v3) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v3 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v3] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v3;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v4) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v4 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v4] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v4;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v5) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v5 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v5] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v5;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v6) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v6 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v6] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v6;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[vlSelfRef.__VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7] 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7;
+        }
     }
     if ((2ULL & vlSelfRef.__VnbaTriggered[0U])) {
         VPipelinedProcessor_testbench___024root___nba_sequent__TOP__2(vlSelf);
-        vlSelfRef.__Vm_traceActivity[3U] = 1U;
     }
     if ((7ULL & vlSelfRef.__VnbaTriggered[0U])) {
-        VPipelinedProcessor_testbench___024root___nba_comb__TOP__1(vlSelf);
+        if (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_MemRead) {
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0x00ffffffffffffffULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | ((QData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                      [(0x000003ffU 
+                                        & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult))])) 
+                      << 0x00000038U));
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0xff00ffffffffffffULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | ((QData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                      [(0x000003ffU 
+                                        & ((IData)(1U) 
+                                           + (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult)))])) 
+                      << 0x00000030U));
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0xffff00ffffffffffULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | ((QData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                      [(0x000003ffU 
+                                        & ((IData)(2U) 
+                                           + (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult)))])) 
+                      << 0x00000028U));
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0xffffff00ffffffffULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | ((QData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                      [(0x000003ffU 
+                                        & ((IData)(3U) 
+                                           + (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult)))])) 
+                      << 0x00000020U));
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0xffffffff00ffffffULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | ((QData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                      [(0x000003ffU 
+                                        & ((IData)(4U) 
+                                           + (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult)))])) 
+                      << 0x00000018U));
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0xffffffffff00ffffULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | ((QData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                      [(0x000003ffU 
+                                        & ((IData)(5U) 
+                                           + (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult)))])) 
+                      << 0x00000010U));
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0xffffffffffff00ffULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | ((QData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                      [(0x000003ffU 
+                                        & ((IData)(6U) 
+                                           + (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult)))])) 
+                      << 8U));
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data 
+                = ((0xffffffffffffff00ULL & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data) 
+                   | (IData)((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank
+                                     [(0x000003ffU 
+                                       & ((IData)(7U) 
+                                          + (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ALUresult)))])));
+        } else {
+            vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data = 0ULL;
+        }
+        vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset 
+            = (1U & ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl)) 
+                     | (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)));
     }
     if ((5ULL & vlSelfRef.__VnbaTriggered[0U])) {
-        VPipelinedProcessor_testbench___024root___nba_sequent__TOP__3(vlSelf);
-    }
-    if ((7ULL & vlSelfRef.__VnbaTriggered[0U])) {
-        VPipelinedProcessor_testbench___024root___nba_comb__TOP__2(vlSelf);
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__currentpc__v0) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__currentpc__v0 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__currentpc__v0;
+        }
+        if (vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__currentpc__v1) {
+            vlSelfRef.__VdlySet__PipelinedProcessor_testbench__DOT__currentpc__v1 = 0U;
+            vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc 
+                = vlSelfRef.__VdlyVal__PipelinedProcessor_testbench__DOT__currentpc__v1;
+        }
     }
 }
 

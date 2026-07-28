@@ -27,7 +27,7 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___eval_initial__TOP(VP
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Body
     vlSymsp->_vm_contextp__->dumpfile("PipelineProcessorTest.vcd"s);
-    vlSymsp->_traceDumpOpen();
+    VL_PRINTF_MT("-Info: PipelinedProcessor_testbench.sv:44: $dumpvar ignored, as Verilated without --trace\n");
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[0U] = 0U;
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[1U] = 0U;
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[2U] = 0U;
@@ -147,10 +147,15 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0(
     VL_DEBUG_IF(VL_DBG_MSGF("+    VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0\n"); );
     VPipelinedProcessor_testbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
+    // Locals
+    CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc;
+    PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc = 0;
+    QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b;
+    PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b = 0;
     // Body
     if (VL_UNLIKELY(((0x00ffU == (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__watchdog))))) {
         VL_WRITEF_NX("Watchdog timer expired\n",0);
-        VL_FINISH_MT("PipelinedProcessor_testbench.sv", 182, "");
+        VL_FINISH_MT("PipelinedProcessor_testbench.sv", 188, "");
     }
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__memwrite 
         = (((((((((0x01c2U == (0x01ffU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
@@ -275,7 +280,7 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0(
             vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__aluctrl = 0U;
             vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__signop = 2U;
         }
-        vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
+        PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
             = ((0x01c2U != (0x01ffU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                                        >> 0x00000015U))) 
                && ((0x01c0U == (0x01ffU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
@@ -311,7 +316,7 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0(
                                                 >> 0x00000015U)))
                          ? 6U : 0U));
         vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__signop = 0U;
-        vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
+        PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc 
             = ((0x0088U == (0x02f8U & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                                        >> 0x00000015U))) 
                || (0x0288U == (0x02f8U & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
@@ -443,7 +448,7 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0(
         = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_MemtoReg)
             ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ReadMemData
             : vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ALUResult);
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b 
+    PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b 
         = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUSrc)
             ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_SignExtImm
             : vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData2);
@@ -454,31 +459,27 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0(
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ALU_out 
         = (((4U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
              ? (((1U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
-                  ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b
+                  ? PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b
                   : (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                     - vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)) 
+                     - PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)) 
                 & (- (QData)((IData)((1U & ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp) 
                                             >> 1U))))))
              : ((2U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
                  ? ((vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                     + vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b) 
+                     + PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b) 
                     & (- (QData)((IData)((1U & (~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp)))))))
                  : ((1U & (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp))
                      ? (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                        | vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)
+                        | PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)
                      : (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ReadData1 
-                        & vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)))) 
+                        & PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b)))) 
            & (- (QData)((IData)((1U & (~ ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_ALUOp) 
                                           >> 3U)))))));
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset 
+    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset 
         = (1U & ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__resetl)) 
                  | (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)));
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__nextpc 
-        = ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)
-            ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_AddResult
-            : (4ULL + vlSelfRef.PipelinedProcessor_testbench__DOT__currentpc));
     vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__rn 
-        = (0x0000001fU & ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc)
+        = (0x0000001fU & ((IData)(PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc)
                            ? vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction
                            : (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                               >> 0x00000010U)));
@@ -497,12 +498,10 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0(
                     | ((IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__ID_EX_Rd) 
                        == (0x0000001fU & (vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction 
                                           >> 5U)))))));
-    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__if_id__DOT__write_enable 
+    vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__if_id__write_enable 
         = (1U & ((~ (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Stall)) 
                  | (IData)(vlSelfRef.PipelinedProcessor_testbench__DOT__uut__DOT__Flush)));
 }
-
-VL_ATTR_COLD void VPipelinedProcessor_testbench___024root____Vm_traceActivitySetAll(VPipelinedProcessor_testbench___024root* vlSelf);
 
 VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___eval_stl(VPipelinedProcessor_testbench___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VPipelinedProcessor_testbench___024root___eval_stl\n"); );
@@ -511,7 +510,6 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___eval_stl(VPipelinedP
     // Body
     if ((1ULL & vlSelfRef.__VstlTriggered[0U])) {
         VPipelinedProcessor_testbench___024root___stl_sequent__TOP__0(vlSelf);
-        VPipelinedProcessor_testbench___024root____Vm_traceActivitySetAll(vlSelf);
     }
 }
 
@@ -556,17 +554,6 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___dump_triggers__act(c
 }
 #endif  // VL_DEBUG
 
-VL_ATTR_COLD void VPipelinedProcessor_testbench___024root____Vm_traceActivitySetAll(VPipelinedProcessor_testbench___024root* vlSelf) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VPipelinedProcessor_testbench___024root____Vm_traceActivitySetAll\n"); );
-    VPipelinedProcessor_testbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    auto& vlSelfRef = std::ref(*vlSelf).get();
-    // Body
-    vlSelfRef.__Vm_traceActivity[0U] = 1U;
-    vlSelfRef.__Vm_traceActivity[1U] = 1U;
-    vlSelfRef.__Vm_traceActivity[2U] = 1U;
-    vlSelfRef.__Vm_traceActivity[3U] = 1U;
-}
-
 VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___ctor_var_reset(VPipelinedProcessor_testbench___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VPipelinedProcessor_testbench___024root___ctor_var_reset\n"); );
     VPipelinedProcessor_testbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -579,8 +566,6 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___ctor_var_reset(VPipe
     vlSelf->PipelinedProcessor_testbench__DOT__currentpc = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 7946251445637214978ull);
     vlSelf->PipelinedProcessor_testbench__DOT__MemtoRegOut = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 5038716145030630116ull);
     vlSelf->PipelinedProcessor_testbench__DOT__CommittedResult = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 14365970940503921562ull);
-    vlSelf->PipelinedProcessor_testbench__DOT__passed = 0;
-    vlSelf->PipelinedProcessor_testbench__DOT__num_tests = 0;
     vlSelf->PipelinedProcessor_testbench__DOT__watchdog = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 11241481571468521929ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 4582315778306807690ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_PC = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 10230686853405506096ull);
@@ -615,9 +600,7 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___ctor_var_reset(VPipe
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_Rd = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 11691975300618030378ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__Flush = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 7695660903371283481ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__Stall = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 128382641600153698ull);
-    vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__nextpc = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 7853535206383706738ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__rn = VL_SCOPED_RAND_RESET_I(5, __VscopeHash, 9571484454095848938ull);
-    vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11273256213466760968ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__alusrc = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1913820913542760988ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__mem2reg = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9163504591877332173ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__regwrite = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1047236406429680885ull);
@@ -628,17 +611,16 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___ctor_var_reset(VPipe
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__aluctrl = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 5927825489678288921ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__signop = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 6861821739037396127ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__ALU_out = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 517054261839779689ull);
-    vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 13035925315237451254ull);
     vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 7536624702516743859ull);
+    vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__if_id__write_enable = 0;
+    vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset = 0;
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__regfile__DOT__regs[__Vi0] = VL_SCOPED_RAND_RESET_Q(64, __VscopeHash, 13223471873037778793ull);
     }
     for (int __Vi0 = 0; __Vi0 < 1024; ++__Vi0) {
         vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank[__Vi0] = VL_SCOPED_RAND_RESET_I(8, __VscopeHash, 10999226909257815440ull);
     }
-    vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__if_id__DOT__write_enable = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14957603457206791547ull);
-    vlSelf->PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9603722178665122119ull);
-    vlSelf->__Vintraval_h0a4e6e9a__0 = 0;
+    vlSelf->__Vintraval_hd2aee5f2__0 = 0;
     vlSelf->__Vintraval_hacfe3d62__0 = 0;
     vlSelf->__Vintraidx_h6e8abd32__0 = 0;
     vlSelf->__Vintraval_h22118c8a__0 = 0;
@@ -698,7 +680,4 @@ VL_ATTR_COLD void VPipelinedProcessor_testbench___024root___ctor_var_reset(VPipe
         vlSelf->__VnbaTriggered[__Vi0] = 0;
     }
     vlSelf->__Vi = 0;
-    for (int __Vi0 = 0; __Vi0 < 4; ++__Vi0) {
-        vlSelf->__Vm_traceActivity[__Vi0] = 0;
-    }
 }

@@ -42,7 +42,6 @@ class alignas(VL_CACHE_LINE_BYTES) VPipelinedProcessor_testbench___024root final
         CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__Flush;
         CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__Stall;
         CData/*4:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__rn;
-        CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__reg2loc;
         CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__alusrc;
         CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__mem2reg;
         CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__regwrite;
@@ -52,8 +51,8 @@ class alignas(VL_CACHE_LINE_BYTES) VPipelinedProcessor_testbench___024root final
         CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__uncond_branch;
         CData/*3:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__aluctrl;
         CData/*1:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__signop;
-        CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__if_id__DOT__write_enable;
-        CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__id_ex__DOT__reset;
+        CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__if_id__write_enable;
+        CData/*0:0*/ PipelinedProcessor_testbench__DOT__uut__DOT____Vcellinp__id_ex__reset;
         CData/*7:0*/ __Vintraval_h22118c8a__0;
         CData/*7:0*/ __Vintraval_h59cbb57d__0;
         CData/*7:0*/ __Vintraval_hf77e6eac__0;
@@ -81,9 +80,9 @@ class alignas(VL_CACHE_LINE_BYTES) VPipelinedProcessor_testbench___024root final
         CData/*0:0*/ __VdlySet__PipelinedProcessor_testbench__DOT__currentpc__v0;
         CData/*0:0*/ __VdlySet__PipelinedProcessor_testbench__DOT__currentpc__v1;
         CData/*0:0*/ __VstlFirstIteration;
+        CData/*0:0*/ __VstlPhaseResult;
     };
     struct {
-        CData/*0:0*/ __VstlPhaseResult;
         CData/*0:0*/ __Vtrigprevexpr___TOP__PipelinedProcessor_testbench__DOT__CLK__0;
         CData/*0:0*/ __VactPhaseResult;
         CData/*0:0*/ __VinactPhaseResult;
@@ -105,8 +104,6 @@ class alignas(VL_CACHE_LINE_BYTES) VPipelinedProcessor_testbench___024root final
         SData/*9:0*/ __VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v5;
         SData/*9:0*/ __VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v6;
         SData/*9:0*/ __VdlyDim0__PipelinedProcessor_testbench__DOT__uut__DOT__datamem__DOT__memBank__v7;
-        IData/*31:0*/ PipelinedProcessor_testbench__DOT__passed;
-        IData/*31:0*/ PipelinedProcessor_testbench__DOT__num_tests;
         IData/*31:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__IF_ID_instruction;
         IData/*31:0*/ __VactIterCount;
         IData/*31:0*/ __VinactIterCount;
@@ -125,11 +122,9 @@ class alignas(VL_CACHE_LINE_BYTES) VPipelinedProcessor_testbench___024root final
         QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__EX_MEM_ReadData2;
         QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ALUResult;
         QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__MEM_WB_ReadMemData;
-        QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__nextpc;
         QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__ALU_out;
-        QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__alu_input_b;
         QData/*63:0*/ PipelinedProcessor_testbench__DOT__uut__DOT__mem_read_data;
-        QData/*63:0*/ __Vintraval_h0a4e6e9a__0;
+        QData/*63:0*/ __Vintraval_hd2aee5f2__0;
         QData/*63:0*/ __Vintraval_hacfe3d62__0;
         QData/*63:0*/ __VdlyVal__PipelinedProcessor_testbench__DOT__currentpc__v0;
         QData/*63:0*/ __VdlyVal__PipelinedProcessor_testbench__DOT__currentpc__v1;
@@ -139,7 +134,6 @@ class alignas(VL_CACHE_LINE_BYTES) VPipelinedProcessor_testbench___024root final
         VlUnpacked<QData/*63:0*/, 1> __VactTriggered;
         VlUnpacked<QData/*63:0*/, 1> __VactTriggeredAcc;
         VlUnpacked<QData/*63:0*/, 1> __VnbaTriggered;
-        VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
     };
     std::string __Vtask_PipelinedProcessor_testbench__DOT__passTest__0__testName;
     VlDelayScheduler __VdlySched;

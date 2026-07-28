@@ -109,14 +109,15 @@ module PipelinedProcessor_testbench;
 
         startpc = 64'h0;
 
+        // WHY THREE CLOCK EDGES BEFORE RELEASING RESET:
+        // The PC and pipeline registers update on negedge. To guarantee reset propagates
+        // through ALL sequential logic, we need at least one full negedge while resetl=0.
+        // posedge → negedge → posedge gives us that negedge in the middle, ensuring
+        // currentpc=0 and all pipeline registers are cleared before execution begins.
         //==================
         @(posedge CLK);
         @(negedge CLK);
         @(posedge CLK);
-        //These lines of code synchronizes reset with actual processor timings
-        //Three lines are used because processor is updated on negative edge, so
-        //having one edge will not activate the sequential logic in the design
-        //This makes the processor experience a full clock cycle while reset is active.
 
         resetl=1;
         //release reset
@@ -133,7 +134,12 @@ Release reset
 Start executing program*/
 
 
-        //running entire program
+        // WHY SAMPLE currentpc AFTER NEGEDGE: currentpc updates on negedge (see PC logic in
+        // PipelinedProcessor.sv). Reading it after posedge would see the OLD value. Waiting
+        // for negedge first means we always display the value that was JUST committed.
+        // The loop exits at 0x34 (one instruction past the last instruction at 0x30),
+        // meaning 0x30's fetch has been issued — the instruction is now IN the pipeline.
+        // Update this bound if the program length ever changes.
         while(currentpc < 64'h34) begin
             @(posedge CLK);
             @(negedge CLK);

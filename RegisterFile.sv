@@ -21,16 +21,24 @@ module RegisterFile(
     //used for state machines, pipeline registers, registers
     //only update on rising edge of clock (sequential logic)
 
-    always_ff @(negedge Clk) begin //negative edge of Clk signal
-    //negedge to avoid read/write conflict in a single cycle.
-        if(regWrite && (writeRegister != 5'd31)) begin //regWrite signal & writeRegister is not the zero register
-         //Write data into selected register
-         regs[writeRegister] <= writeData;
-         //store writeData into register selected by writeRegister
-        end
+    // WHY NEGEDGE WRITE: Pipeline registers update on posedge. If the register file also
+    // wrote on posedge, a WB-stage write and an ID-stage read of the SAME register would
+    // race — both happen at posedge and the read might see the old value or new value
+    // unpredictably. Writing on negedge separates the two events cleanly:
+    //   posedge → ID reads the (not-yet-updated) register value
+    //   negedge → WB writes the new value
+    //   posedge+1 → ID (next instruction) reads the freshly written value
+    // This is also why the Stall module only needs to check EX and MEM stages (not WB):
+    // by the time a WB-stage instruction would write, the ID-stage read has already
+    // happened at the preceding posedge, so there is no hazard to stall for.
+    always_ff @(negedge Clk) begin
+        if(regWrite && (writeRegister != 5'd31))
+            regs[writeRegister] <= writeData;
     end
 
-    //Asynchronous read port A & port B
+    // WHY COMBINATIONAL READS: Reads are asynchronous (always_comb) so the ID stage can
+    // get register values in the same cycle the instruction arrives — no extra latency.
+    // XZR (register 31) is hardwired to 0 and can never be written (guarded above).
     always_comb begin
         if(readRegister1 == 5'd31)
             BusA=64'd0;

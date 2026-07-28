@@ -212,6 +212,12 @@ module PipelinedProcessor(
         .MemoryWrite(EX_MEM_MemWrite),
         .Clock(CLK)
     );
+    // WHY COMBINATIONAL: MemtoRegOut is a combinational mux (not a register) because it must
+    // drive regfile.writeData in the SAME cycle the WB stage is active — a registered version
+    // would add one extra cycle of latency between MEM_WB holding the data and the register
+    // file committing it. The downside is that MemtoRegOut is TRANSIENT: it is only valid for
+    // the one cycle an instruction is in WB, then collapses to 0 when bubbles flow through.
+    // This is why CommittedResult exists — to hold the value after WB is done.
     assign MemtoRegOut = MEM_WB_MemtoReg ? MEM_WB_ReadMemData : MEM_WB_ALUResult;
 
 
@@ -257,11 +263,18 @@ module PipelinedProcessor(
     IF_ID if_id(
         .clk(CLK),
         .reset(~resetl), //because the reset in this processor is active-low, then its inversed to the reset inside IF_ID
-        // On a taken branch, force IF_ID to CAPTURE the redirect target (override a stall hold).
-        // The branch target is the PC for only one half-cycle, so IF_ID must latch it on the very
-        // next posedge. If a stall held write_enable low here, that target instruction (e.g. the
-        // loop-top CBZ) would be skipped entirely. Flush must NOT reset IF_ID — the redirect
-        // overwrites the wrong-path instruction with the target naturally.
+        // ~Stall: a stall freezes IF_ID (write_enable=0) so the instruction in ID is preserved
+        //   and re-decoded next cycle instead of being lost.
+        // | Flush: BUG FIX — when a branch fires and a stall happens on the same cycle, ~Stall
+        //   alone would be 0, freezing IF_ID and causing it to miss the branch target (which is
+        //   only the current PC for one half-cycle). Flush forces write_enable=1 to override the
+        //   stall so the redirect target is captured. Flush does NOT reset IF_ID — the new PC
+        //   naturally overwrites the wrong-path instruction.
+        //   Truth table:
+        //     Stall=1 Flush=0 → write_enable=0 → frozen (preserve instruction for re-decode)
+        //     Stall=0 Flush=0 → write_enable=1 → normal capture
+        //     Stall=1 Flush=1 → write_enable=1 → Flush wins, branch target captured
+        //     Stall=0 Flush=1 → write_enable=1 → branch target captured
         .write_enable(~Stall | Flush),
         .PC_in(currentpc),
         .Instruction_in(instruction),
@@ -271,6 +284,11 @@ module PipelinedProcessor(
 
     ID_EX id_ex(
         .clk(CLK),
+        // ~resetl: active-low reset inverted to active-high for this register.
+        // | Flush: when a branch is taken, instructions in ID and EX are wrong-path and must
+        // be squashed. Flush forces the same reset pin to clear them to NOPs mid-execution.
+        // MEM_WB does NOT get Flush because it holds the branch instruction itself — resetting
+        // it would throw away valid work.
         .reset(~resetl | Flush),
         .PC_in(IF_ID_PC), //IF_ID_PC coming in, and ID_EX_PC will exit
         .ReadData1_in(regoutA), //Because processor component is originating in IF/ID
@@ -279,6 +297,11 @@ module PipelinedProcessor(
 
         .Rd_in(rd),
 
+        // STALL NOP BUBBLE: when stalling, the instruction in ID is frozen and will re-execute
+        // next cycle. ID_EX still clocks in on posedge, so we force all control signals to 0
+        // to create a harmless NOP — RegWrite=0 means no register write, MemWrite=0 means no
+        // memory write, Branch=0 means no branch. Data signals (Rd, ReadData) pass through
+        // unchanged but are harmless since no control signal will act on them.
         .ALUOp_in       (Stall ? 4'b0 : aluctrl),
         .ALUSrc_in      (Stall ? 1'b0 : alusrc),
 
